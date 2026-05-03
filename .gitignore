@@ -1,0 +1,21 @@
+# Entorno virtual
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# MLflow
+mlruns/
+
+# Modelos generados
+artifacts/
+
+# Archivos temporales
+*.log
+
+# Sistema
+.DS_Store
+
+# Dataset
+data/household_power_consumption.txt

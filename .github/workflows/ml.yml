@@ -1,0 +1,56 @@
+name: "MLOps Pipeline energy-consumption — Train & Validate"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ml_pipeline:
+    name: "Train → Test → Validate → Upload"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Clonar repositorio"
+        uses: actions/checkout@v4
+
+      - name: "Configurar Python 3.10"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: "Instalar dependencias"
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: "Validar sintaxis"
+        run: |
+          python -m py_compile src/train.py
+
+      - name: "Ejecutar pruebas"
+        run: |
+          pytest src/
+
+      - name: "Entrenar modelo"
+        run: |
+          python src/train.py
+
+      - name: "Subir modelo entrenado"
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: "energy-consumption-model"
+          path: artifacts/model/
+          retention-days: 30
+
+      - name: "Subir trazabilidad MLflow"
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: "mlruns-experimento"
+          path: mlruns/
+          retention-days: 30
