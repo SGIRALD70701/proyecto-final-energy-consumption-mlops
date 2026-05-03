@@ -18,12 +18,12 @@ El dataset utilizado en este proyecto corresponde al conjunto de datos “Indivi
 
 Este conjunto de datos contiene mediciones del consumo eléctrico de un hogar con una frecuencia de muestreo de un minuto, recopiladas durante aproximadamente 4 años (desde diciembre de 2006 hasta noviembre de 2010), con más de 2 millones de registros.
 
-🔹 Características principales del dataset:
+Características principales del dataset:
 Tipo de datos: multivariado, series de tiempo
 Número de registros: 2,075,259
 Número de variables: 9
 Problemas asociados: regresión y clustering
-🔹 Variables incluidas:
+Variables incluidas:
 Global_active_power: consumo activo global (variable objetivo)
 Global_reactive_power: consumo reactivo
 Voltage: voltaje
@@ -77,7 +77,7 @@ Este comando:
 
 ---
 
-## 📈 Resultados
+## Resultados
 
 El modelo obtuvo las siguientes métricas:
 
